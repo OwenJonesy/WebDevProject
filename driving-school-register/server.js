@@ -64,11 +64,11 @@ app.post('/register', async (req, res) => {
             return res.status(201).json({ message: 'Registration successful', data: result.ops[0] });
         } else {
             // No documents were inserted
-            return res.status(500).json({ error: 'Internal Server Error' });
+           // return res.status(500).json({ error: 'Internal Server Error' });
         }
     } catch (error) {
         // Handle unexpected errors
-        return res.status(500).json({ error: 'Internal Server Error' });
+        //return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         closeDatabaseConnection();
     }
