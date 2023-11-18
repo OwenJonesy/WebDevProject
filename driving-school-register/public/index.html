@@ -1,3 +1,5 @@
+<!-- public/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +28,9 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
+        <!-- Error Message (Initially hidden) -->
+        <div id="errorMessage" style="display: none;"></div>
+
         <button type="submit" data-action="register">Register</button>
     </form>
 
@@ -37,6 +42,9 @@
         <label for="loginPassword">Password:</label>
         <input type="password" id="loginPassword" name="loginPassword" required>
 
+        <!-- Error Message (Initially hidden) -->
+        <div id="errorMessage" style="display: none;"></div>
+
         <button type="submit" data-action="login">Login</button>
     </form>
 
@@ -47,9 +55,7 @@
     </div>
 
     <!-- Success Message (Initially hidden) -->
-    <div id="successMessage" style="display: none; color: green;">
-        Login successful! You can now access your account.
-    </div>
+    <div id="successMessage" style="display: none;"></div>
 
     <script src="scripts/scripts.js"></script>
 

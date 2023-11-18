@@ -1,3 +1,6 @@
+// scripts.js
+
+// Registration form event listener
 document.getElementById('registrationForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -17,15 +20,25 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         });
 
         if (response.ok) {
-            console.log('Registration successful');
+            const responseData = await response.json();
+
+            // Registration successful
+            console.log('Registration successful:', responseData.data);
+            showSuccessMessage('Registration successful');
         } else {
-            console.error('Registration failed:', response.statusText);
+            const errorData = await response.json();
+
+            // Registration failed, show an error message
+            console.error('Registration failed:', errorData.error);
+            showErrorMessage(errorData.error);
         }
     } catch (error) {
         console.error('Error during registration:', error.message);
+        showErrorMessage('Error during registration. Please try again later.');
     }
 });
 
+// Login form event listener
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -45,10 +58,16 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         });
 
         if (response.ok) {
-            console.log('Login successful');
-            showSuccessMessage(); // Display success message
+            const responseData = await response.json();
+
+            // Login successful
+            console.log('Login successful:', responseData.data);
+            showSuccessMessage('Login successful');
         } else {
-            console.error('Login failed:', response.statusText);
+            const errorData = await response.json();
+
+            // Login failed, show an error message
+            console.error('Login failed:', errorData.error);
             alert('Login failed. Please check your email and password.');
         }
     } catch (error) {
@@ -57,37 +76,48 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
 });
 
-// Toggle between registration and login forms
-function showRegistrationForm() {
-    document.getElementById('pageTitle').innerText = 'Driving School Registration';
-    document.getElementById('registrationForm').style.display = 'block';
-    document.getElementById('loginForm').style.display = 'none';
-    hideSuccessMessage(); // Hide success message when switching forms
+// Function to show success message
+function showSuccessMessage(message) {
+    hideErrorMessage(); // Hide any existing error message
+    const successMessage = document.getElementById('successMessage');
+    successMessage.innerText = message;
+    successMessage.style.display = 'block';
+}
 
-    // Show the "Switch to Login" button and hide the "Switch to Register" button
+// Function to hide success message
+function hideSuccessMessage() {
+    document.getElementById('successMessage').style.display = 'none';
+}
+
+// Function to show error message
+function showErrorMessage(message) {
+    hideSuccessMessage(); // Hide any existing success message
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.innerText = message;
+    errorMessage.style.display = 'block';
+}
+
+// Function to hide error message
+function hideErrorMessage() {
+    document.getElementById('errorMessage').style.display = 'none';
+}
+
+// Function to switch to the registration form
+function showRegistrationForm() {
+    document.getElementById('registrationForm').style.display = 'grid';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('pageTitle').innerText = 'Driving School Registration';
     document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
     document.getElementById('switchToRegisterFormButton').style.display = 'none';
 }
 
+// Function to switch to the login form
 function showLoginForm() {
-    document.getElementById('pageTitle').innerText = 'Driving School Login';
     document.getElementById('registrationForm').style.display = 'none';
-    document.getElementById('loginForm').style.display = 'block';
-    hideSuccessMessage(); // Hide success message when switching forms
-
-    // Show the "Switch to Register" button and hide the "Switch to Login" button
+    document.getElementById('loginForm').style.display = 'grid';
+    document.getElementById('pageTitle').innerText = 'Driving School Login';
     document.getElementById('switchToLoginFormButton').style.display = 'none';
     document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
-}
-
-// Display success message
-function showSuccessMessage() {
-    document.getElementById('successMessage').style.display = 'block';
-}
-
-// Hide success message
-function hideSuccessMessage() {
-    document.getElementById('successMessage').style.display = 'none';
 }
 
 // Initially show the registration form
