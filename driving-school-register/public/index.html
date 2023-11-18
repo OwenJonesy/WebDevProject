@@ -1,16 +1,16 @@
-<!-- public/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School Registration</title>
+    <title>Driving School Registration and Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Driving School Registration</h1>
-    <form id="registrationForm">
+    <h1 id="pageTitle">Driving School Registration and Login</h1>
+    
+    <!-- Registration Form -->
+    <form id="registrationForm" class="registration-form">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
 
@@ -26,9 +26,33 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit">Register</button>
+        <button type="submit" data-action="register">Register</button>
     </form>
 
+    <!-- Login Form -->
+    <form id="loginForm" class="login-form">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit" data-action="login">Login</button>
+    </form>
+
+    <!-- Button to switch to Login Form -->
+    <button id="showLoginFormButton">Switch to Login</button>
+
+    <!-- Success Message (Initially hidden) -->
+    <div id="successMessage" style="display: none; color: green;">
+        Login successful! You can now access your account.
+    </div>
+
     <script src="scripts/scripts.js"></script>
+
+    <script>
+        // Event listener to switch to Login Form when the button is clicked
+        document.getElementById('showLoginFormButton').addEventListener('click', showLoginForm);
+    </script>
 </body>
 </html>
