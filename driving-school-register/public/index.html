@@ -30,7 +30,7 @@
     </form>
 
     <!-- Login Form -->
-    <form id="loginForm" class="login-form">
+    <form id="loginForm" class="login-form" style="display: none;">
         <label for="loginEmail">Email:</label>
         <input type="email" id="loginEmail" name="loginEmail" required>
 
@@ -40,8 +40,11 @@
         <button type="submit" data-action="login">Login</button>
     </form>
 
-    <!-- Button to switch to Login Form -->
-    <button id="showLoginFormButton">Switch to Login</button>
+    <!-- Buttons to switch between forms -->
+    <div id="formSwitchButtons">
+        <button id="switchToLoginFormButton">Switch to Login</button>
+        <button id="switchToRegisterFormButton">Switch to Register</button>
+    </div>
 
     <!-- Success Message (Initially hidden) -->
     <div id="successMessage" style="display: none; color: green;">
@@ -51,8 +54,9 @@
     <script src="scripts/scripts.js"></script>
 
     <script>
-        // Event listener to switch to Login Form when the button is clicked
-        document.getElementById('showLoginFormButton').addEventListener('click', showLoginForm);
+        // Event listeners for form switching buttons
+        document.getElementById('switchToLoginFormButton').addEventListener('click', showLoginForm);
+        document.getElementById('switchToRegisterFormButton').addEventListener('click', showRegistrationForm);
     </script>
 </body>
 </html>

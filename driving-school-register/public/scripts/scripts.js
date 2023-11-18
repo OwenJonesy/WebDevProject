@@ -63,6 +63,10 @@ function showRegistrationForm() {
     document.getElementById('registrationForm').style.display = 'block';
     document.getElementById('loginForm').style.display = 'none';
     hideSuccessMessage(); // Hide success message when switching forms
+
+    // Show the "Switch to Login" button and hide the "Switch to Register" button
+    document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
+    document.getElementById('switchToRegisterFormButton').style.display = 'none';
 }
 
 function showLoginForm() {
@@ -70,6 +74,10 @@ function showLoginForm() {
     document.getElementById('registrationForm').style.display = 'none';
     document.getElementById('loginForm').style.display = 'block';
     hideSuccessMessage(); // Hide success message when switching forms
+
+    // Show the "Switch to Register" button and hide the "Switch to Login" button
+    document.getElementById('switchToLoginFormButton').style.display = 'none';
+    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
 }
 
 // Display success message
