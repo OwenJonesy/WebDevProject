@@ -58,6 +58,10 @@ app.get('/MyAccount', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'MyAccount.html'));
 });
 
+app.get('/Map', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Map.html'));
+});
+
 
 
 

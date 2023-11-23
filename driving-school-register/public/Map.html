@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Locations</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Instructor Locations</h2>
+
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            // Array of instructor locations
+            var instructors = [
+                { name: 'Instructor 1', lat: 37.7749, lng: -122.4194 },
+                { name: 'Instructor 2', lat: 34.0522, lng: -118.2437 },
+                { name: 'Instructor 3', lat: 40.7128, lng: -74.0060 }
+                // Add more instructors as needed
+            ];
+
+            // Create a map centered at a default location
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 37.7749, lng: -122.4194 },
+                zoom: 10
+            });
+
+            // Add markers for each instructor
+            instructors.forEach(function (instructor) {
+                var marker = new google.maps.Marker({
+                    position: { lat: instructor.lat, lng: instructor.lng },
+                    map: map,
+                    title: instructor.name
+                });
+
+                // Add an info window with instructor name
+                var infoWindow = new google.maps.InfoWindow({
+                    content: instructor.name
+                });
+
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYf0mFSozD2hF1lJJB65oUXP5Fk9lthpQ&callback=initMap" async defer></script>
+
+</body>
+</html>
