@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -32,6 +30,41 @@ function closeDatabaseConnection() {
     client.close();
     console.log('Closed MongoDB connection');
 }
+
+// Middleware to connect to the database before handling requests
+app.use(async (req, res, next) => {
+    try {
+        database = await connectToDatabase();
+        next();
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Routes for the different HTML pages
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+});
+
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/bookings', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'bookings.html'));
+});
+
+app.get('/MyAccount', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'MyAccount.html'));
+});
+
+
+
+
+// Registration and login routes go here...
+
+
+
 
 app.post('/register', async (req, res) => {
     try {
