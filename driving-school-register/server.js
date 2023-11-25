@@ -202,6 +202,42 @@ app.get('/user-details/:email', async (req, res) => {
     }
 });
 
+// Delete account route
+app.delete('/delete-account', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Email and password are required for account deletion.' });
+        }
+
+        const db = await connectToDatabase();
+        const studentsCollection = db.collection('students');
+
+        // Check if the user with the given email and password exists
+        const user = await studentsCollection.findOne({ email, password });
+
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid email or password for account deletion.' });
+        }
+
+        // Delete the user account
+        const result = await studentsCollection.deleteOne({ email });
+
+        if (result.deletedCount === 1) {
+            // Account deletion successful
+            return res.status(200).json({ message: 'Account deletion successful' });
+        } else {
+            // No documents were deleted
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    } catch (error) {
+        console.error('Error during account deletion:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    } finally {
+        closeDatabaseConnection();
+    }
+});
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

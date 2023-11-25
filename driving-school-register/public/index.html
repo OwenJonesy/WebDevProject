@@ -1,5 +1,3 @@
-<!-- public/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,9 +62,26 @@
 
         <button type="submit" data-action="change-password">Change Password</button>
     </form>
+    
+    <!-- Delete Account Form -->
+    <form id="deleteAccountForm" class="delete-account-form" style="display: none;">
+        <label for="deleteAccountEmail">Email:</label>
+        <input type="email" id="deleteAccountEmail" name="email" required>
+
+        <label for="deleteAccountPassword">Password:</label>
+        <input type="password" id="deleteAccountPassword" name="password" required>
+
+        <!-- Error Message (Initially hidden) -->
+        <div id="deleteAccountErrorMessage" style="display: none;"></div>
+
+        <button type="submit" data-action="delete-account">Delete Account</button>
+    </form>
 
     <!-- Button to switch to the Change Password form -->
     <button id="switchToChangePasswordFormButton">Change Password</button>
+
+    <!-- Button to switch to the Delete Account form -->
+    <button id="switchToDeleteAccountFormButton">Delete Account</button>
 
     <!-- Buttons to switch between forms -->
     <div id="formSwitchButtons">
@@ -84,6 +99,7 @@
         document.getElementById('switchToLoginFormButton').addEventListener('click', showLoginForm);
         document.getElementById('switchToRegisterFormButton').addEventListener('click', showRegistrationForm);
         document.getElementById('switchToChangePasswordFormButton').addEventListener('click', showChangePasswordForm);
+        document.getElementById('switchToDeleteAccountFormButton').addEventListener('click', showDeleteAccountForm);
     </script>
 </body>
 </html>

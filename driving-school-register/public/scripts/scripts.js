@@ -23,7 +23,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
             const responseData = await response.json();
             console.log('Registration successful:', responseData.data);
             showSuccessMessage('Registration successful');
-            showLoginForm(); // Switch to login form after registration
+            
         } else {
             const errorData = await response.json();
             console.error('Registration failed:', errorData.error);
@@ -57,21 +57,20 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         if (response.ok) {
             const responseData = await response.json();
             console.log('Login successful:', responseData.data);
-
-            // Show user details
+            showSuccessMessage('Login successful');
+			// Show user details
             showUserDetails(responseData.data);
-
+            
         } else {
             const errorData = await response.json();
             console.error('Login failed:', errorData.error);
-            showErrorMessage('loginErrorMessage', errorData.error);
+            alert('Login failed. Please check your email and password.');
         }
     } catch (error) {
         console.error('Error during login:', error.message);
-        showErrorMessage('loginErrorMessage', 'Error during login. Please try again later.');
+        alert('Error during login. Please try again later.');
     }
 });
-
 // Function to show user details
 function showUserDetails(userData) {
     // Hide the login form
@@ -113,7 +112,7 @@ document.getElementById('changePasswordForm').addEventListener('submit', async f
             const responseData = await response.json();
             console.log('Password change successful:', responseData.message);
             showSuccessMessage('Password change successful');
-            showLoginForm(); // Switch to login form after password change
+            
         } else {
             const errorData = await response.json();
             console.error('Password change failed:', errorData.error);
@@ -124,6 +123,59 @@ document.getElementById('changePasswordForm').addEventListener('submit', async f
         showErrorMessage('Error during password change. Please try again later.');
     }
 });
+
+// Delete account form event listener
+document.getElementById('deleteAccountForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+        formDataObject[key] = value;
+    });
+
+    try {
+        const response = await fetch('/delete-account', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formDataObject),
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            console.log('Account deletion successful:', responseData.message);
+            showSuccessMessage('Account deletion successful');
+            
+        } else {
+            const errorData = await response.json();
+            console.error('Account deletion failed:', errorData.error);
+            showErrorMessage(`Account deletion failed: ${errorData.error}`);
+        }
+    } catch (error) {
+        console.error('Error during account deletion:', error.message);
+        showErrorMessage('Error during account deletion. Please try again later.');
+    }
+});
+
+// Function to switch to the delete account form
+function showDeleteAccountForm() {
+    document.getElementById('registrationForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('changePasswordForm').style.display = 'none';
+    document.getElementById('deleteAccountForm').style.display = 'grid';
+    document.getElementById('pageTitle').innerText = 'Delete Account';
+    document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
+    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
+    document.getElementById('switchToChangePasswordFormButton').style.display = 'inline-block';
+    document.getElementById('switchToDeleteAccountFormButton').style.display = 'none';
+}
+
+// Event listener for the delete account form switching button
+document.getElementById('switchToDeleteAccountFormButton').addEventListener('click', showDeleteAccountForm);
+
+// ... (existing code)
 
 // Event listeners for form switching buttons
 document.getElementById('switchToLoginFormButton').addEventListener('click', showLoginForm);
