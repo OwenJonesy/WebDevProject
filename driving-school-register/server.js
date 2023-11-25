@@ -1,3 +1,5 @@
+//server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -31,6 +33,7 @@ function closeDatabaseConnection() {
     console.log('Closed MongoDB connection');
 }
 
+// Middleware to connect to the database before handling requests
 app.use(async (req, res, next) => {
     try {
         database = await connectToDatabase();
@@ -40,64 +43,159 @@ app.use(async (req, res, next) => {
     }
 });
 
-app.post('/update-password', async (req, res) => {
-    try {
-        const { email, oldPassword, newPassword } = req.body;
+// Routes for the different HTML pages
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+});
 
-        if (!email || !oldPassword || !newPassword) {
-            return res.status(400).json({ error: 'Email, old password, and new password are required for password update.' });
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/bookings', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'bookings.html'));
+});
+
+app.get('/MyAccount', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'MyAccount.html'));
+});
+
+app.get('/Map', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Map.html'));
+});
+
+
+
+
+// Registration and login routes go here...
+
+
+
+
+app.post('/register', async (req, res) => {
+    try {
+        if (!req.body || Object.keys(req.body).length === 0) {
+            // Check if the request body is empty
+            return res.status(400).json({ error: 'Invalid request. Request body is empty.' });
+        }
+
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: 'Email is required for registration.' });
         }
 
         const db = await connectToDatabase();
         const studentsCollection = db.collection('students');
 
-        const user = await studentsCollection.findOne({ email, password: oldPassword });
+        // Check if the email already exists
+        const existingUser = await studentsCollection.findOne({ email });
 
-        if (!user) {
-            return res.status(401).json({ error: 'Invalid email or old password for password update.' });
+        if (existingUser) {
+            // Email already exists, send an error response
+            return res.status(409).json({ error: 'Email already exists. Please use a different email.' });
         }
 
-        const updateResult = await studentsCollection.updateOne({ email }, { $set: { password: newPassword } });
+        const result = await studentsCollection.insertOne(req.body);
 
-        if (updateResult.modifiedCount === 1) {
-            return res.status(200).json({ message: 'Password update successful' });
+        if (result.insertedCount === 1) {
+            // Registration successful
+            return res.status(201).json({ message: 'Registration successful', data: result.ops[0] });
         } else {
-            return res.status(500).json({ error: 'Internal Server Error' });
+            // No documents were inserted
+           // return res.status(500).json({ error: 'Internal Server Error' });
         }
     } catch (error) {
-        console.error('Error during password update:', error);
+        // Handle unexpected errors
+        //return res.status(500).json({ error: 'Internal Server Error' });
+    } finally {
+        closeDatabaseConnection();
+    }
+});
+
+app.post('/login', async (req, res) => {
+    try {
+        const { loginEmail, loginPassword } = req.body;
+
+        if (!loginEmail || !loginPassword) {
+            return res.status(400).json({ error: 'Email and password are required for login.' });
+        }
+
+        const db = await connectToDatabase();
+        const studentsCollection = db.collection('students');
+
+        // Check if the user with the given email and password exists
+        const user = await studentsCollection.findOne({ email: loginEmail, password: loginPassword });
+
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid email or password.' });
+        }
+
+        // Login successful
+        return res.status(200).json({ message: 'Login successful', data: user });
+    } catch (error) {
+        console.error('Error during login:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         closeDatabaseConnection();
     }
 });
 
-app.post('/delete-account', async (req, res) => {
+// Add this route for changing passwords
+app.post('/change-password', async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, oldPassword, newPassword } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({ error: 'Email and password are required for account deletion.' });
+        if (!email || !oldPassword || !newPassword) {
+            return res.status(400).json({ error: 'Email, old password, and new password are required for password change.' });
         }
 
         const db = await connectToDatabase();
         const studentsCollection = db.collection('students');
 
-        const user = await studentsCollection.findOne({ email, password });
+        // Check if the user with the given email and old password exists
+        const user = await studentsCollection.findOne({ email, password: oldPassword });
 
         if (!user) {
-            return res.status(401).json({ error: 'Invalid email or password for account deletion.' });
+            return res.status(401).json({ error: 'Invalid email or old password.' });
         }
 
-        const deletionResult = await studentsCollection.deleteOne({ email, password });
+        // Update the password
+        const result = await studentsCollection.updateOne({ email }, { $set: { password: newPassword } });
 
-        if (deletionResult.deletedCount === 1) {
-            return res.status(200).json({ message: 'Account deletion successful' });
+        if (result.modifiedCount === 1) {
+            // Password change successful
+            return res.status(200).json({ message: 'Password change successful' });
         } else {
-            return res.status(500).json({ error: 'Internal Server Error' });
+            // No documents were modified (email or password might not match)
+            return res.status(401).json({ error: 'Invalid email or old password.' });
         }
     } catch (error) {
-        console.error('Error during account deletion:', error);
+        console.error('Error during password change:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// Add a new route to retrieve user details after login
+app.get('/user-details/:email', async (req, res) => {
+    try {
+        const { email } = req.params;
+
+        const db = await connectToDatabase();
+        const studentsCollection = db.collection('students');
+
+        // Retrieve user details based on the provided email
+        const user = await studentsCollection.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        // Return user details
+        return res.status(200).json({ data: user });
+    } catch (error) {
+        console.error('Error retrieving user details:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         closeDatabaseConnection();
@@ -107,3 +205,4 @@ app.post('/delete-account', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+

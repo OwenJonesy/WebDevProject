@@ -63,9 +63,7 @@ footer {
 }
 
 /* Additional styles for success and error messages */
-#successMessage,
-#errorMessage {
+#successMessage, #errorMessage {
   margin-top: 10px;
   padding: 10px;
   border-radius: 4px;
-}
