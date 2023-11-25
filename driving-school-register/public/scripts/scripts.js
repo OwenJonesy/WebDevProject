@@ -75,7 +75,15 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 });
 
 // Event listener for the "Change Password" button
-document.getElementById('changePasswordButton').addEventListener('click', showPasswordUpdateForm);
+document.getElementById('changePasswordButton').addEventListener('click', function () {
+    hideChangePasswordButton(); // Hide the "Change Password" button when showing the password update form
+    document.getElementById('registrationForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('updatePasswordForm').style.display = 'grid';
+    document.getElementById('pageTitle').innerText = 'Change Password';
+    document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
+    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
+});
 
 // Add an event listener for the password update form
 document.getElementById('updatePasswordForm').addEventListener('submit', async function (event) {
@@ -117,6 +125,21 @@ document.getElementById('updatePasswordForm').addEventListener('submit', async f
     }
 });
 
+// Function to hide the "Change Password" button
+function hideChangePasswordButton() {
+    const changePasswordButton = document.getElementById('changePasswordButton');
+    if (changePasswordButton) {
+        changePasswordButton.style.display = 'none';
+    }
+}
+
+// Function to show the "Change Password" button
+function showChangePasswordButton() {
+    const changePasswordButton = document.getElementById('changePasswordButton');
+    if (changePasswordButton) {
+        changePasswordButton.style.display = 'block';
+    }
+}
 
 // Function to show success message
 function showSuccessMessage(message) {
@@ -152,6 +175,7 @@ function showRegistrationForm() {
     document.getElementById('pageTitle').innerText = 'Driving School Registration';
     document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
     document.getElementById('switchToRegisterFormButton').style.display = 'none';
+    showChangePasswordButton(); // Show the "Change Password" button when switching to registration form
 }
 
 // Function to switch to the login form
@@ -162,10 +186,12 @@ function showLoginForm() {
     document.getElementById('pageTitle').innerText = 'Driving School Login';
     document.getElementById('switchToLoginFormButton').style.display = 'none';
     document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
+    showChangePasswordButton(); // Show the "Change Password" button when switching to login form
 }
 
 // Function to show the password update form
 function showPasswordUpdateForm() {
+    hideChangePasswordButton(); // Hide the "Change Password" button when showing the password update form
     document.getElementById('registrationForm').style.display = 'none';
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('updatePasswordForm').style.display = 'grid';
