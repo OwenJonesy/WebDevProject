@@ -76,6 +76,29 @@
 
     <button type="submit" data-action="update-password">Update Password</button>
 </form>
+<!-- Add this button in the existing HTML structure -->
+<button id="deleteAccountButton">Delete Account</button>
+
+<!-- Add this form in the existing HTML structure -->
+<form id="deleteAccountForm" class="delete-account-form" style="display: none;">
+    <label for="loginEmailForDelete">Email:</label>
+    <input type="email" id="loginEmailForDelete" name="loginEmailForDelete" required>
+
+    <label for="loginPasswordForDelete">Password:</label>
+    <input type="password" id="loginPasswordForDelete" name="loginPasswordForDelete" required>
+
+    <label for="phoneNumberForDelete">Phone Number:</label>
+    <input type="tel" id="phoneNumberForDelete" name="phoneNumberForDelete" required>
+
+    <!-- Error Message (Initially hidden) -->
+    <div id="errorMessage" style="display: none;"></div>
+
+    <!-- Success Message (Initially hidden) -->
+    <div id="successMessage" style="display: none;"></div>
+
+    <button type="submit" data-action="delete-account">Delete Account</button>
+</form>
+
 
     <script src="scripts/scripts.js"></script>
 
