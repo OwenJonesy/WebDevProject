@@ -1,3 +1,5 @@
+//server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -133,6 +135,43 @@ app.post('/login', async (req, res) => {
         return res.status(200).json({ message: 'Login successful', data: user });
     } catch (error) {
         console.error('Error during login:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    } finally {
+        closeDatabaseConnection();
+    }
+});
+
+// Add a new route for password update
+app.post('/update-password', async (req, res) => {
+    try {
+        const { email, oldPassword, newPassword } = req.body;
+
+        if (!email || !oldPassword || !newPassword) {
+            return res.status(400).json({ error: 'Email, old password, and new password are required for password update.' });
+        }
+
+        const db = await connectToDatabase();
+        const studentsCollection = db.collection('students');
+
+        // Check if the user with the given email and old password exists
+        const user = await studentsCollection.findOne({ email, password: oldPassword });
+
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid email or old password.' });
+        }
+
+        // Update the user's password
+        const updateResult = await studentsCollection.updateOne({ email }, { $set: { password: newPassword } });
+
+        if (updateResult.modifiedCount === 1) {
+            // Password update successful
+            return res.status(200).json({ message: 'Password update successful' });
+        } else {
+            // No documents were modified
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    } catch (error) {
+        console.error('Error during password update:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         closeDatabaseConnection();

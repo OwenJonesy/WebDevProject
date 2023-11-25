@@ -1,5 +1,3 @@
-// scripts.js
-
 // Registration form event listener
 document.getElementById('registrationForm').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -76,6 +74,50 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
 });
 
+// Event listener for the "Change Password" button
+document.getElementById('changePasswordButton').addEventListener('click', showPasswordUpdateForm);
+
+// Add an event listener for the password update form
+document.getElementById('updatePasswordForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+        formDataObject[key] = value;
+    });
+
+    try {
+        const response = await fetch('/update-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: formDataObject.emailForPasswordUpdate,
+                oldPassword: formDataObject.oldPassword,
+                newPassword: formDataObject.newPassword,
+            }),
+        });
+
+        if (response.ok) {
+            // Password update successful
+            const responseData = await response.json();
+            console.log('Password update successful:', responseData.message);
+            showSuccessMessage('Password update successful');
+        } else {
+            // Password update failed, show an error message
+            const errorData = await response.json();
+            console.error('Password update failed:', errorData.error);
+            showErrorMessage(errorData.error);
+        }
+    } catch (error) {
+        console.error('Error during password update:', error.message);
+        showErrorMessage('Error during password update. Please try again later.');
+    }
+});
+
+
 // Function to show success message
 function showSuccessMessage(message) {
     hideErrorMessage(); // Hide any existing error message
@@ -106,6 +148,7 @@ function hideErrorMessage() {
 function showRegistrationForm() {
     document.getElementById('registrationForm').style.display = 'grid';
     document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('updatePasswordForm').style.display = 'none';
     document.getElementById('pageTitle').innerText = 'Driving School Registration';
     document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
     document.getElementById('switchToRegisterFormButton').style.display = 'none';
@@ -115,8 +158,19 @@ function showRegistrationForm() {
 function showLoginForm() {
     document.getElementById('registrationForm').style.display = 'none';
     document.getElementById('loginForm').style.display = 'grid';
+    document.getElementById('updatePasswordForm').style.display = 'none';
     document.getElementById('pageTitle').innerText = 'Driving School Login';
     document.getElementById('switchToLoginFormButton').style.display = 'none';
+    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
+}
+
+// Function to show the password update form
+function showPasswordUpdateForm() {
+    document.getElementById('registrationForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('updatePasswordForm').style.display = 'grid';
+    document.getElementById('pageTitle').innerText = 'Change Password';
+    document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
     document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
 }
 

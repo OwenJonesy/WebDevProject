@@ -1,5 +1,3 @@
-<!-- public/index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +54,28 @@
 
     <!-- Success Message (Initially hidden) -->
     <div id="successMessage" style="display: none;"></div>
+
+    <!-- Button to trigger password update form -->
+    <button id="changePasswordButton">Change Password</button>
+
+    <form id="updatePasswordForm" class="update-password-form" style="display: none;">
+    <label for="emailForPasswordUpdate">Email:</label>
+    <input type="email" id="emailForPasswordUpdate" name="emailForPasswordUpdate" required>
+
+    <label for="oldPassword">Old Password:</label>
+    <input type="password" id="oldPassword" name="oldPassword" required>
+
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPassword" name="newPassword" required>
+
+    <!-- Error Message (Initially hidden) -->
+    <div id="errorMessage" style="display: none;"></div>
+
+    <!-- Success Message (Initially hidden) -->
+    <div id="successMessage" style="display: none;"></div>
+
+    <button type="submit" data-action="update-password">Update Password</button>
+</form>
 
     <script src="scripts/scripts.js"></script>
 
