@@ -1,11 +1,11 @@
-<!-- public/Map.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructor Locations</title>
+    <link href="Style.css" rel="stylesheet">
+    <link href="../webdev2/assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         #map {
             height: 400px;
@@ -15,9 +15,46 @@
 </head>
 <body>
 
-    <h2>Instructor Locations</h2>
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">City Driving School</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="homepage.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Courses.html">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Map.html">Instructor Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light me-2" type="button">Login</button>
+                        <button class="btn btn-outline-light" type="button">Account</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <div id="map"></div>
+
+    <!-- Map Content -->
+    <div class="container mt-5">
+        <h2>Instructor Locations</h2>
+        <div id="map"></div>
+    </div>
 
     <script>
         function initMap() {
@@ -56,5 +93,7 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYf0mFSozD2hF1lJJB65oUXP5Fk9lthpQ&callback=initMap" async defer></script>
 
+    <!-- Bootstrap JavaScript -->
+    <script src="../webdev2/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
