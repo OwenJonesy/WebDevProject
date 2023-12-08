@@ -2,7 +2,7 @@
 // Login form event listener
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault();
-	document.getElementById('switchToChangePasswordFormButton').style.display = 'none';
+	
 
     const formData = new FormData(this);
     const formDataObject = {};
