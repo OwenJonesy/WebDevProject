@@ -1,0 +1,75 @@
+<!-- public/bookings.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Driving School Booking</h2>
+
+    <form action="/submit-booking" method="post">
+        <!-- Updated action to point to the correct server route -->
+
+        <!-- CSRF Token (if applicable) -->
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="lesson-type">Lesson Type:</label>
+        <select id="lesson-type" name="lessonType" required>
+            <!-- Updated name attribute to match server-side code -->
+            <option value="regular">Regular Lesson</option>
+            <option value="intensive">Intensive Lesson</option>
+        </select>
+
+        <label for="preferred-time">Preferred Time:</label>
+        <input type="datetime-local" id="preferred-time" name="preferredTime" required>
+        <!-- Updated name attribute to match server-side code -->
+
+        <button type="submit">Book Now</button>
+    </form>
+
+</body>
+</html>
