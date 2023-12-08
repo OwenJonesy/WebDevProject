@@ -43,11 +43,7 @@
 
     <h2>Driving School Booking</h2>
 
-    <form action="/submit-booking" method="post">
-        <!-- Updated action to point to the correct server route -->
-
-        <!-- CSRF Token (if applicable) -->
-
+    <form id="bookingForm" action="/submit-booking" method="post">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -59,17 +55,60 @@
 
         <label for="lesson-type">Lesson Type:</label>
         <select id="lesson-type" name="lessonType" required>
-            <!-- Updated name attribute to match server-side code -->
             <option value="regular">Regular Lesson</option>
             <option value="intensive">Intensive Lesson</option>
         </select>
 
         <label for="preferred-time">Preferred Time:</label>
         <input type="datetime-local" id="preferred-time" name="preferredTime" required>
-        <!-- Updated name attribute to match server-side code -->
 
         <button type="submit">Book Now</button>
     </form>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+
+            try {
+                const response = await fetch('/submit-booking', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formDataObject),
+                });
+
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log('Booking successful:', responseData.data);
+                    showSuccessMessage('Booking successful');
+                } else {
+                    const errorData = await response.json();
+                    console.error('Booking failed:', errorData.error);
+                    showErrorMessage(errorData.error);
+                }
+            } catch (error) {
+                console.error('Error during booking:', error.message);
+                showErrorMessage('Error during booking. Please try again later.');
+            }
+        });
+
+        function showSuccessMessage(message) {
+            // Implement your success message display logic here
+            alert(message);
+        }
+
+        function showErrorMessage(message) {
+            // Implement your error message display logic here
+            alert(message);
+        }
+    </script>
 
 </body>
 </html>

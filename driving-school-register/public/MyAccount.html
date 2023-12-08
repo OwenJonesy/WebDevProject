@@ -39,37 +39,21 @@
 </head>
 <body>
 
-    <h2>My Account</h2>
+    <!-- Login Form -->
+    <form id="loginForm" class="login-form" style="display: none;">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required>
 
-    <div class="details">
-        <h3>Personal Details</h3>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> john.doe@example.com</p>
-        <p><strong>Phone Number:</strong> +1234567890</p>
-    </div>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
 
-    <div class="bookings">
-        <h3>My Bookings</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>2023-11-23</td>
-                    <td>Hotel XYZ</td>
-                    <td>Confirmed</td>
-                </tr>
-                <!-- Add more rows for additional bookings -->
-            </tbody>
-        </table>
-    </div>
+        <!-- Error Message (Initially hidden) -->
+        <div id="errorMessage" style="display: none;"></div>
+
+        <button type="submit" data-action="login">Login</button>
+    </form>
+	
+	
 
 </body>
 </html>
