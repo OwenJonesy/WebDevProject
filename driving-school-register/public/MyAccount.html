@@ -1,59 +1,195 @@
-<!-- public/MyAccount.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account</title>
+    <!-- Metadata and Styles -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>City Driving School</title>
+    <link rel="stylesheet" href="Style.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Add any additional custom styles for your driving school */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            padding-top: 56px;
+            background-color: #f8f9fa;
         }
 
-        h2 {
-            color: #333;
-        }
-
-        .details {
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
             margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+        #pageTitle {
+            margin-top: 40px;
+            text-align: center;
         }
 
-        th {
-            background-color: #f2f2f2;
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        
+        button {
+            background-color: #000; /* Black color */
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #successMessage,
+        #errorMessage,
+        #changePasswordErrorMessage,
+        #deleteAccountErrorMessage {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">City Driving School</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="homepage.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Courses.html">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Map.html">Instructor Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light me-2" type="button">Login</button>
+                        <button class="btn btn-outline-light" type="button">Account</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Login Form -->
-    <form id="loginForm" class="login-form" style="display: none;">
-        <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" name="loginEmail" required>
+    <body>
+        <h1 id="pageTitle">Driving School Account</h1>
 
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="loginPassword" required>
+        <!-- Login Form -->
+        <form id="loginForm" class="login-form" style="display: none;">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" name="loginEmail" required>
 
-        <!-- Error Message (Initially hidden) -->
-        <div id="errorMessage" style="display: none;"></div>
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
 
-        <button type="submit" data-action="login">Login</button>
-    </form>
-	
-	
+            <!-- Error Message (Initially hidden) -->
+            <div id="errorMessage" style="display: none;"></div>
 
-</body>
+            <button type="submit" data-action="login">Login</button>
+        </form>
+
+        <!-- Change Password Form -->
+        <form id="changePasswordForm" class="change-password-form" style="display: none;">
+            <label for="changePasswordEmail">Email:</label>
+            <input type="email" id="changePasswordEmail" name="email" required>
+
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" id="oldPassword" name="oldPassword" required>
+
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+
+            <!-- Error Message (Initially hidden) -->
+            <div id="changePasswordErrorMessage" style="display: none;"></div>
+
+            <button type="submit" data-action="change-password">Change Password</button>
+        </form>
+        
+        <!-- Delete Account Form -->
+        <form id="deleteAccountForm" class="delete-account-form" style="display: none;">
+            <label for="deleteAccountEmail">Email:</label>
+            <input type="email" id="deleteAccountEmail" name="email" required>
+
+            <label for="deleteAccountPassword">Password:</label>
+            <input type="password" id="deleteAccountPassword" name="password" required>
+
+            <!-- Error Message (Initially hidden) -->
+            <div id="deleteAccountErrorMessage" style="display: none;"></div>
+
+            <button type="submit" data-action="delete-account">Delete Account</button>
+        </form>
+
+        <!-- Button to switch to the Change Password form -->
+        <button id="switchToChangePasswordFormButton" style="display: none;">Change Password</button>
+
+        <!-- Button to switch to the Delete Account form -->
+        <button id="switchToDeleteAccountFormButton" style="display: none;">Delete Account</button>
+
+        <!-- Buttons to switch between forms -->
+        <div id="formSwitchButtons">
+            <button id="switchToLoginFormButton">Switch to Login</button>
+        </div>
+
+        <!-- Success Message (Initially hidden) -->
+        <div id="successMessage" style="display: none;"></div>
+
+        <script src="scripts/scripts2.js"></script>
+
+        <script>
+            // Event listeners for form switching buttons
+            document.getElementById('switchToLoginFormButton').addEventListener('click', showLoginForm);
+            document.getElementById('switchToChangePasswordFormButton').addEventListener('click', showChangePasswordForm);
+            document.getElementById('switchToDeleteAccountFormButton').addEventListener('click', showDeleteAccountForm);
+            
+            // Check if the user is logged in (replace with your own logic)
+            var userLoggedIn = false; // Set to true if the user is logged in
+            
+            // Hide or show buttons based on login status
+            if (userLoggedIn) {
+                document.getElementById('switchToChangePasswordFormButton').style.display = 'inline-block';
+                document.getElementById('switchToDeleteAccountFormButton').style.display = 'inline-block';
+            } else {
+                document.getElementById('switchToChangePasswordFormButton').style.display = 'none';
+                document.getElementById('switchToDeleteAccountFormButton').style.display = 'none';
+            }
+        </script>
+    </body>
 </html>

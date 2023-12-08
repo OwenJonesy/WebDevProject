@@ -1,41 +1,8 @@
-// Registration form event listener
-document.getElementById('registrationForm').addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-        formDataObject[key] = value;
-    });
-
-    try {
-        const response = await fetch('/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formDataObject),
-        });
-
-        if (response.ok) {
-            const responseData = await response.json();
-            console.log('Registration successful:', responseData.data);
-            showSuccessMessage('Registration successful');
-
-        } else {
-            const errorData = await response.json();
-            console.error('Registration failed:', errorData.error);
-            showErrorMessage(errorData.error);
-        }
-    } catch (error) {
-        console.error('Error during registration:', error.message);
-        showErrorMessage('Error during registration. Please try again later.');
-    }
-});
 
 // Login form event listener
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault();
+	document.getElementById('switchToChangePasswordFormButton').style.display = 'none';
 
     const formData = new FormData(this);
     const formDataObject = {};
@@ -55,6 +22,19 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         if (response.ok) {
             const responseData = await response.json();
             console.log('Login successful:', responseData.data);
+			
+			document.getElementById('switchToChangePasswordFormButton').style.display = 'inline-block';
+			document.getElementById('switchToDeleteAccountFormButton').style.display = 'inline-block';
+
+            // Fetch user details and bookings
+            const userDetailsResponse = await fetch(`/user-details/${formDataObject.loginEmail}`);
+            if (userDetailsResponse.ok) {
+                const userDetailsData = await userDetailsResponse.json();
+
+                // Include bookings in user data
+                responseData.data.bookings = userDetailsData.data.bookings;
+            }
+
             showSuccessMessage('Login successful');
             // Show user details
             showUserDetails(responseData.data);
@@ -69,6 +49,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         alert('Error during login. Please try again later.');
     }
 });
+
 
 // Function to show user details and bookings
 function showUserDetails(userData) {
@@ -184,7 +165,6 @@ function showDeleteAccountForm() {
 
     // Show switch buttons except for the delete account form button
     document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
-    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
     document.getElementById('switchToChangePasswordFormButton').style.display = 'inline-block';
     document.getElementById('switchToDeleteAccountFormButton').style.display = 'none';
 }
@@ -192,11 +172,8 @@ function showDeleteAccountForm() {
 // Event listener for the delete account form switching button
 document.getElementById('switchToDeleteAccountFormButton').addEventListener('click', showDeleteAccountForm);
 
-// ... (existing code)
-
 // Event listeners for form switching buttons
 document.getElementById('switchToLoginFormButton').addEventListener('click', showLoginForm);
-document.getElementById('switchToRegisterFormButton').addEventListener('click', showRegistrationForm);
 document.getElementById('switchToChangePasswordFormButton').addEventListener('click', showChangePasswordForm);
 
 // Function to show success message
@@ -225,21 +202,6 @@ function hideErrorMessage() {
     document.getElementById('errorMessage').style.display = 'none';
 }
 
-// Function to switch to the registration form
-function showRegistrationForm() {
-    hideForms(); // Hide all forms
-    hideSuccessMessage(); // Hide success message
-    hideErrorMessage(); // Hide error message
-
-    document.getElementById('registrationForm').style.display = 'grid';
-    document.getElementById('pageTitle').innerText = 'Driving School Registration';
-
-    // Show switch buttons except for the registration form button
-    document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
-    document.getElementById('switchToRegisterFormButton').style.display = 'none';
-    document.getElementById('switchToChangePasswordFormButton').style.display = 'inline-block';
-    document.getElementById('switchToDeleteAccountFormButton').style.display = 'inline-block';
-}
 
 // Function to switch to the login form
 function showLoginForm() {
@@ -252,7 +214,6 @@ function showLoginForm() {
 
     // Show switch buttons except for the login form button
     document.getElementById('switchToLoginFormButton').style.display = 'none';
-    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
     document.getElementById('switchToChangePasswordFormButton').style.display = 'inline-block';
     document.getElementById('switchToDeleteAccountFormButton').style.display = 'inline-block';
 }
@@ -268,18 +229,17 @@ function showChangePasswordForm() {
 
     // Show switch buttons except for the change password form button
     document.getElementById('switchToLoginFormButton').style.display = 'inline-block';
-    document.getElementById('switchToRegisterFormButton').style.display = 'inline-block';
+
     document.getElementById('switchToChangePasswordFormButton').style.display = 'none';
     document.getElementById('switchToDeleteAccountFormButton').style.display = 'inline-block';
 }
 
 // Function to hide all forms
 function hideForms() {
-    document.getElementById('registrationForm').style.display = 'none';
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('changePasswordForm').style.display = 'none';
     document.getElementById('deleteAccountForm').style.display = 'none';
 }
 
 // Initially show the registration form
-showRegistrationForm();
+showLoginForm();

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 id="pageTitle">Driving School Registration and Login</h1>
+    <h1 id="pageTitle">Driving School Registration </h1>
     
     <!-- Registration Form -->
     <form id="registrationForm" class="registration-form">
@@ -32,75 +32,15 @@
         <button type="submit" data-action="register">Register</button>
     </form>
 
-    <!-- Login Form -->
-    <form id="loginForm" class="login-form" style="display: none;">
-        <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" name="loginEmail" required>
+  
 
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="loginPassword" required>
-
-        <!-- Error Message (Initially hidden) -->
-        <div id="errorMessage" style="display: none;"></div>
-
-        <button type="submit" data-action="login">Login</button>
-    </form>
-
-    <!-- Change Password Form -->
-    <form id="changePasswordForm" class="change-password-form" style="display: none;">
-        <label for="changePasswordEmail">Email:</label>
-        <input type="email" id="changePasswordEmail" name="email" required>
-
-        <label for="oldPassword">Old Password:</label>
-        <input type="password" id="oldPassword" name="oldPassword" required>
-
-        <label for="newPassword">New Password:</label>
-        <input type="password" id="newPassword" name="newPassword" required>
-
-        <!-- Error Message (Initially hidden) -->
-        <div id="changePasswordErrorMessage" style="display: none;"></div>
-
-        <button type="submit" data-action="change-password">Change Password</button>
-    </form>
     
-    <!-- Delete Account Form -->
-    <form id="deleteAccountForm" class="delete-account-form" style="display: none;">
-        <label for="deleteAccountEmail">Email:</label>
-        <input type="email" id="deleteAccountEmail" name="email" required>
-
-        <label for="deleteAccountPassword">Password:</label>
-        <input type="password" id="deleteAccountPassword" name="password" required>
-
-        <!-- Error Message (Initially hidden) -->
-        <div id="deleteAccountErrorMessage" style="display: none;"></div>
-
-        <button type="submit" data-action="delete-account">Delete Account</button>
-    </form>
-
-
-    <!-- Button to switch to the Change Password form -->
-    <button id="switchToChangePasswordFormButton">Change Password</button>
-
-    <!-- Button to switch to the Delete Account form -->
-    <button id="switchToDeleteAccountFormButton">Delete Account</button>
-
-    <!-- Buttons to switch between forms -->
-    <div id="formSwitchButtons">
-        <button id="switchToLoginFormButton">Switch to Login</button>
-        <button id="switchToRegisterFormButton">Switch to Register</button>
-    </div>
 
     <!-- Success Message (Initially hidden) -->
     <div id="successMessage" style="display: none;"></div>
 
     <script src="scripts/scripts.js"></script>
 
-    <script>
-        // Event listeners for form switching buttons
-        document.getElementById('switchToLoginFormButton').addEventListener('click', showLoginForm);
-        document.getElementById('switchToRegisterFormButton').addEventListener('click', showRegistrationForm);
-        document.getElementById('switchToChangePasswordFormButton').addEventListener('click', showChangePasswordForm);
-        document.getElementById('switchToDeleteAccountFormButton').addEventListener('click', showDeleteAccountForm);
-    </script>
+    
 </body>
 </html>
