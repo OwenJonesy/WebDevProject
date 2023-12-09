@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta information -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>City Driving School - Courses</title>
+    <title>City Driving School - Courses</title> <!-- Title of the page -->
+
+    <!-- External style sheets -->
     <link rel="stylesheet" href="Style.css">
     <link href="bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for the body -->
     <style>
         body {
-            padding-top: 56px;
+            padding-top: 56px; /* Add padding to the top of the body to accommodate the fixed navbar */
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Navigation bar using Bootstrap -->
     <header data-bs-theme="dark">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <!-- Container for nav bar -->
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">City Driving School</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- button for mobile view of nav bar -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- Nav bar links -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <!-- Nav bar items -->
                         <li class="nav-item">
                             <a class="nav-link" href="homepage.html">Home</a>
                         </li>
@@ -42,93 +56,96 @@
                             <a class="nav-link" href="ContactUs.html">Contact</a>
                         </li>
                     </ul>
+
+                    <!-- Registration and account buttons -->
                     <div class="d-flex">
                         <a class="btn btn-outline-light me-2" href="Register.html" role="button">Register</a>
                         <a class="btn btn-outline-light" href="MyAccount.html" role="button">Account</a>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- Main Content  -->
+
     <main>
 
-
-
+        <!-- Container for course details -->
         <div class="container marketing">
 
+            <!-- Section for Basic Driving Course -->
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="fw-normal">Basic Driving Course</h2>
                     <p>Get started with our basic driving course, designed for beginners to build a strong foundation in driving skills.</p>
                     <p><strong>Description:</strong> The Basic Driving Course at City Driving School is perfect for new drivers. Students learn the fundamentals, including traffic rules, signals, and parking maneuvers. Lessons 4-12 expand on these skills, providing a comprehensive introduction to driving. By the end, students are equipped with the knowledge and confidence to navigate various road scenarios safely.</p>
                     <p><strong>Lesson Overview:</strong></p>
-                    <ul>
+                    <ul> <!-- Talk about lessons -->
                         <li>Lesson 1: Introduction to Driving</li>
                         <li>Lesson 2: Traffic Rules and Signals</li>
                         <li>Lesson 3: Parking and Maneuvering</li>
                         <li>Lesson 4-6: Intermediate Driving Skills</li>
                         <li>Lesson 7-9: Road Navigation Techniques</li>
                         <li>Lesson 10-12: Defensive Driving Principles</li>
-    
                     </ul>
-                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p> <!-- Button to bring to booking page -->
+                
                 </div>
             </div>
 
+            <!-- Section for Comprehensive Courses -->
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="fw-normal">Comprehensive Courses</h2>
                     <p>Our comprehensive courses cover everything from basic driving skills to advanced maneuvers, ensuring a well-rounded learning experience.</p>
                     <p><strong>Description:</strong> The Comprehensive Courses at City Driving School provide a thorough understanding of driving techniques. Starting with the Basic Driving Course, which covers fundamental skills, students progress to the Advanced Driving Course for complex maneuvers. Lessons 4-15 focus on precision driving, emergency maneuvers, and highway driving. This comprehensive program ensures students are fully prepared for any driving scenario, fostering confidence and safety on the road.</p>
                     <p><strong>Lesson Overview:</strong></p>
-                    <ul>
+                    <ul> <!-- Talk about lessons -->
                         <li>Lesson 1-3: Basic Driving Skills and Defensive Techniques</li>
                         <li>Lesson 4-6: Precision Driving Techniques</li>
                         <li>Lesson 7-9: Emergency Maneuvers</li>
                         <li>Lesson 10-12: Highway Driving Skills</li>
                     </ul>
-                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p> <!-- Button to bring to booking page -->
                 </div>
             </div>
 
-
-
+            <!-- Section for Advanced Driving Course -->
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="fw-normal">Advanced Driving Course</h2>
                     <p>Take your skills to the next level with our advanced driving course, focusing on complex maneuvers and road scenarios.</p>
                     <p><strong>Description:</strong> The Advanced Driving Course at City Driving School is designed for experienced drivers seeking to enhance their skills. Lessons cover precision driving techniques, emergency maneuvers, and highway driving skills. Participants gain mastery in handling challenging scenarios, ensuring they are well-prepared for any driving situation.</p>
                     <p><strong>Lesson Overview:</strong></p>
-                    <ul>
+                    <ul> <!-- Talk about lessons -->
                         <li>Lesson 1: Precision Driving Techniques</li>
                         <li>Lesson 2: Emergency Maneuvers</li>
                         <li>Lesson 3: Highway Driving Skills</li>
                     </ul>
-                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p> <!-- Button to bring to booking page -->
                 </div>
             </div>
 
-
+            <!-- Section for Pre-Test Preparation Course -->
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="fw-normal">Pre-Test Preparation Course</h2>
                     <p>Prepare for your driving test with our pre-test preparation course, covering essential skills and test-taking strategies.</p>
                     <p><strong>Description:</strong> The Pre-Test Preparation Course at City Driving School is tailored to help students excel in their driving tests. Lessons focus on understanding the test process, common test scenarios, and effective test-taking strategies. This course ensures that participants are well-prepared and confident on the day of their driving test.</p>
                     <p><strong>Lesson Overview:</strong></p>
-                    <ul>
+                    <ul> <!-- Talk about lessons -->
                         <li>Lesson 1: Understanding the Driving Test Process</li>
                         <li>Lesson 2: Common Test Scenarios</li>
                         <li>Lesson 3: Test-Taking Strategies</li>
                     </ul>
-                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p> <!-- Button to bring to booking page -->
                 </div>
             </div>
 
         </div>
 
     </main>
-
 
     <footer class="container">
         <p class="float-end"><a href="#">Back to top</a></p>
