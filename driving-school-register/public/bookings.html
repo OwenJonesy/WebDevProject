@@ -1,69 +1,147 @@
+<!---- By Owen Jones and Gavin Cunningham -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Metadata and Styles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driving School Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            background-color: #f8f9fa;
         }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #pageTitle {
+            margin-top: 0px;
+            text-align: center;
+            font-size: 0px; 
+        }
+
         form {
-            max-width: 600px;
+            max-width: 300px;
             margin: 0 auto;
         }
+
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 2px;
+            font-size: 12px;
         }
+
         input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
+            width: calc(100% - 4px);
+            padding: 4px;
+            margin-bottom: 6px;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
+
         button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
+            background-color: #000;
+            color: #fff;
+            padding: 6px 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
         }
+
         button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
+
+        
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">City Driving School</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Courses.html">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="bookings.html">Book Now</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Map.html">Instructor Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AboutUs.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ContactUs.html">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a class="btn btn-outline-light me-2" href="index.html" role="button">Register</a>
+                        <a class="btn btn-outline-light" href="MyAccount.html" role="button">Account</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <h2>Driving School Booking</h2>
+    <div class="container">
+        <h1 id="pageTitle">Driving School Booking</h1>
 
-    <form id="bookingForm" action="/submit-booking" method="post">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required>
+        <!-- Booking Form -->
+        <form id="bookingForm" action="/submit-booking" method="post">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
 
-        <label for="lesson-type">Instructor:</label>
-        <select id="lesson-type" name="lessonType" required>
-            <option value="John Smith">John Smith</option>
-            <option value="Emma Davis">Emma Davis</option>
-        </select>
+            <label for="instructor">Instructor:</label>
+            <select id="instructor" name="instructor" required>
+                <option value="John Smith">John Smith</option>
+                <option value="Emma Davis">Emma Davis</option>
+                <option value="Michael O'Connor">Michael O'Connor</option>
+            </select>
 
-        <label for="preferred-time">Preferred Time:</label>
-        <input type="datetime-local" id="preferred-time" name="preferredTime" required>
+            <label for="course-type">Course:</label>
+            <select id="course-type" name="coursetype" required>
+                <option value="Basic">Basic</option>
+                <option value="Comprehensive">Comprehensive</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Pre-Test">Pre-Test Prep</option>
+            </select>
 
-        <button type="submit">Book Now</button>
-    </form>
+            <label for="preferred-time">Preferred Time:</label>
+            <input type="datetime-local" id="preferred-time" name="preferredTime" required>
 
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('bookingForm').addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -73,6 +151,8 @@
             formData.forEach((value, key) => {
                 formDataObject[key] = value;
             });
+			
+			console.log('FormData Object:', formDataObject);
 
             try {
                 const response = await fetch('/submit-booking', {
@@ -93,8 +173,7 @@
                     showErrorMessage(errorData.error);
                 }
             } catch (error) {
-                console.error('Error during booking:', error.message);
-                showErrorMessage('Error during booking. Please try again later.');
+                
             }
         });
 
@@ -108,11 +187,6 @@
             alert(message);
         }
     </script>
-
-</body>
-</html>
-
-
 
 </body>
 </html>

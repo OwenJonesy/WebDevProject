@@ -1,0 +1,90 @@
+<!---- By Owen Jones and Gavin Cunningham -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us - City Driving School</title> <!-- Title of the page -->
+
+    <!-- External style sheets -->
+    <link rel="stylesheet" href="Style.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for the body -->    
+    <style>
+        body {
+            padding-top: 56px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav bar using Bootstrap -->    
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <!-- Container for nav bar -->            
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">City Driving School</a>
+                <!-- button for mobile view of nav bar -->                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Nav bar links -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <!-- Nav bar items -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Courses.html">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="bookings.html">Book Now</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Map.html">Instructor Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AboutUs.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ContactUs.html">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Registration and account buttons -->                    
+                    <div class="d-flex">
+                        <a class="btn btn-outline-light me-2" href="index.html" role="button">Register</a>
+                        <a class="btn btn-outline-light" href="MyAccount.html" role="button">Account</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Contact Us</h1>
+
+        <!-- Contact Information -->
+        <div class="mt-5">
+            <h2>Contact Information</h2>
+            <p>If you have any questions or concerns, feel free to contact us using the information below:</p>
+            <p><strong>City Driving School</strong></p>
+            <p><strong>Address:</strong> 123 Main Street, Cityville, State, 12345</p>
+            <p><strong>Phone:</strong> (555) 123-4567</p>
+            <p><strong>Email:</strong> info@citydrivingschool.com</p>
+        </div>
+    </main>
+
+    <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+        <p>&copy; 2023 City Driving School &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+    <script src="bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,31 +1,44 @@
+<!---- By Owen Jones and Gavin Cunningham -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Metadata and Styles -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>City Driving School</title>
+    <title>City Driving School</title> <!-- Title of the page -->
+    
+    <!-- External style sheets -->
     <link rel="stylesheet" href="Style.css">
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="carousel.css" rel="stylesheet">
+    
+    <!-- Custom styles for the body -->
     <style>
-        /* Add any additional custom styles for your driving school */
         body {
             padding-top: 56px;
         }
     </style>
 </head>
+
 <body>
-    <!-- Navbar -->
+
+    <!-- Nav bar using Bootstrap -->
     <header data-bs-theme="dark">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <!-- Container for nav bar -->
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">City Driving School</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+               <a class="navbar-brand" href="#">City Driving School</a>                
+                <!-- button for mobile view of nav bar -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
+                <!-- Nav bar links -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <!-- Nav bar items -->
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
                         </li>
@@ -33,60 +46,78 @@
                             <a class="nav-link" href="Courses.html">Courses</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="bookings.html">Book Now</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="Map.html">Instructor Locations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="AboutUs.html">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="ContactUs.html">Contact</a>
                         </li>
                     </ul>
+                    
+                    <!-- Registration and account buttons -->
                     <div class="d-flex">
-                        <button class="btn btn-outline-light me-2" type="button">Login</button>
-                        <button class="btn btn-outline-light" type="button">Account</button>
+                        <a class="btn btn-outline-light me-2" href="index.html" role="button">Register</a>
+                        <a class="btn btn-outline-light" href="MyAccount.html" role="button">Account</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content  -->
+
     <main>
-        <!-- Hero Section with Carousel -->
-        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-            <!-- Carousel Content -->
+        <!-- Carousel -->
+
+        <div id="combinedCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
             <div class="carousel-inner">
+                <!-- first carousel item -->
                 <div class="carousel-item active">
                     <img src="https://www.billplant.co.uk/wp-content/uploads/2022/02/Bill-Plant-Driving-School-Volkswagen-1-min.jpg" class="d-block w-100" alt="Driving School Image 1">
                     <div class="container">
                         <div class="carousel-caption text-start">
                             <h1>Welcome to City Driving School</h1>
                             <p>Your Journey to Safe and Confident Driving Begins Here</p>
-                            <p><a class="btn btn-lg btn-primary" href="Courses.html">Explore Courses</a></p>
+                            <p><a class="btn btn-lg btn-primary" href="Courses.html">Explore Courses</a></p><!-- button that brings to courses page -->
                         </div>
                     </div>
                 </div>
-                <!-- Add more carousel items as needed -->
+                <!-- second carousel item -->
+                <div class="carousel-item">
+                    <img src="https://media.product.which.co.uk/prod/images/original/gm-79c42dd6-2216-4f64-888a-8d176a0a1b5c-learner-driversnewsmain.jpeg" class="d-block w-100" alt="Instructor Image 1">
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>Meet Our Experienced Instructors</h1>
+                            <p>Learn from the best instructors to become a skilled and confident driver.</p>
+                            <p><a class="btn btn-lg btn-primary" href="Map.html">Explore Instructors</a></p><!-- button that brings to map page -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Carousel Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <!-- Carousel Navigation Buttons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#combinedCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#combinedCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
 
-        <!-- About Us Section -->
+        <!-- Learn to drive section -->
+
         <div class="container marketing">
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading fw-normal lh-1">Learn to Drive with Confidence</h2>
                     <p class="lead">City Driving School offers comprehensive driving courses designed to instill confidence in new drivers. Our experienced instructors prioritize safety and skill development.</p>
-                    <p><a class="btn btn-secondary" href="Courses.html">View Courses &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="Courses.html">View Courses &raquo;</a></p><!-- button to go to course page -->
                 </div>
                 <div class="col-md-5">
                     <img src="https://nationaldrivingschool.ie/wp-content/uploads/become-a-driving-instructor-with-kevin-horgan.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="Instructor Image">
@@ -94,47 +125,48 @@
             </div>
         </div>
 
-        <!-- Course Highlights -->
+        <!-- Course list with short description -->
+
         <div class="container marketing">
             <div class="row">
-                <!-- Comprehensive Courses -->
+                <!-- First Course short description and a button and a link to the booking page-->
                 <div class="col-lg-6">
                     <h2 class="fw-normal">Comprehensive Courses</h2>
                     <p>Our courses cover everything from basic driving skills to advanced maneuvers, ensuring a well-rounded learning experience.</p>
-                    <p><a class="btn btn-secondary" href="Courses.html">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
                 </div>
-                <!-- Basic Driving Course -->
+                <!-- Second Course short description and a button and a link to the booking page-->
                 <div class="col-lg-6">
                     <h2 class="fw-normal">Basic Driving Course</h2>
                     <p>Get started with our basic driving course, designed for beginners to build a strong foundation in driving skills.</p>
-                    <p><a class="btn btn-secondary" href="#">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
                 </div>
             </div>
             <div class="row">
-                <!-- Advanced Driving Course -->
+                <!-- Third Course short description and a button and a link to the booking page-->
                 <div class="col-lg-6">
                     <h2 class="fw-normal">Advanced Driving Course</h2>
                     <p>Take your skills to the next level with our advanced driving course, focusing on complex maneuvers and road scenarios.</p>
-                    <p><a class="btn btn-secondary" href="#">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
                 </div>
-                <!-- Pre-Test Preparation Course -->
+                <!-- Fourth Course short description and a button and a link to the booking page-->
                 <div class="col-lg-6">
                     <h2 class="fw-normal">Pre-Test Preparation Course</h2>
                     <p>Prepare for your driving test with our pre-test preparation course, covering essential skills and test-taking strategies.</p>
-                    <p><a class="btn btn-secondary" href="#">Book Now &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="bookings.html">Book Now &raquo;</a></p>
                 </div>
             </div>
-            <!-- Add more course highlights as needed -->
         </div>
 
-        <!-- Contact Us Section -->
+
+        <!-- section talking about contact us with a link to the page -->
         <div class="container marketing">
             <hr class="featurette-divider">
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading fw-normal lh-1">Ready to Start Your Driving Journey?</h2>
                     <p class="lead">Contact City Driving School today to enroll in our courses. Our team is ready to assist you on your path to becoming a confident and responsible driver.</p>
-                    <p><a class="btn btn-secondary" href="#">Contact Us &raquo;</a></p>
+                    <p><a class="btn btn-secondary" href="ContactUs.html">Contact Us &raquo;</a></p>
                 </div>
                 <div class="col-md-5">
                     <img src="https://t3.ftcdn.net/jpg/06/08/98/92/360_F_608989298_gZG6WhnV3EV0rdpgHa4xqLSlxilufXnD.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="Car on Road Image">
@@ -143,13 +175,12 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="container">
         <p class="float-end"><a href="#">Back to top</a></p>
         <p>&copy; 2023 City Driving School &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
 
-    <!-- Bootstrap JavaScript -->
     <script src="bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

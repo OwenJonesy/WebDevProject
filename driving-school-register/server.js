@@ -1,4 +1,4 @@
-//server.js
+//---- By Owen Jones and Gavin Cunningham 
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -66,12 +66,6 @@ app.get('/Map', (req, res) => {
 
 
 
-
-// Registration and login routes go here...
-
-
-
-
 app.post('/register', async (req, res) => {
     try {
         if (!req.body || Object.keys(req.body).length === 0) {
@@ -100,14 +94,12 @@ app.post('/register', async (req, res) => {
 
         if (result.insertedCount === 1) {
             // Registration successful
+            console.log('Registration successful');
             return res.status(201).json({ message: 'Registration successful', data: result.ops[0] });
-        } else {
-            // No documents were inserted
-           // return res.status(500).json({ error: 'Internal Server Error' });
         }
     } catch (error) {
-        // Handle unexpected errors
-        //return res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error during registration:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         closeDatabaseConnection();
     }
@@ -141,7 +133,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Add this route for changing passwords
+// route for changing passwords
 app.post('/change-password', async (req, res) => {
     try {
         const { email, oldPassword, newPassword } = req.body;
@@ -178,13 +170,13 @@ app.post('/change-password', async (req, res) => {
 
 app.post('/submit-booking', async (req, res) => {
     try {
-        const { name, email, phone, lessonType, preferredTime } = req.body;
+        const { name, email, phone, instructor, coursetype, preferredTime } = req.body;
 
-        if (!name || !email || !phone || !lessonType || !preferredTime) {
+        if (!name || !email || !phone || !instructor || !coursetype || !preferredTime) {
             return res.status(400).json({ error: 'All fields are required for booking.' });
         }
 
-        console.log('Received Booking Data:', { name, email, phone, lessonType, preferredTime });
+        console.log('Received Booking Data:', { name, email, phone, instructor, coursetype, preferredTime });
 
         const bookingsCollection = database.collection('bookings');
 
@@ -192,7 +184,8 @@ app.post('/submit-booking', async (req, res) => {
             name,
             email,
             phone,
-            lessonType,
+            instructor,
+            coursetype,
             preferredTime,
         });
 
@@ -208,7 +201,8 @@ app.post('/submit-booking', async (req, res) => {
     }
 });
 
-// Add a new route to retrieve user details and bookings after login
+
+
 app.get('/user-details/:email', async (req, res) => {
     try {
         const { email } = req.params;
@@ -227,35 +221,9 @@ app.get('/user-details/:email', async (req, res) => {
         // Retrieve bookings based on the user's email
         const userBookings = await bookingsCollection.find({ email }).toArray();
 
-        // Return user details and bookings
-        return res.status(200).json({ data: { user, bookings: userBookings } });
-    } catch (error) {
-        console.error('Error retrieving user details and bookings:', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
-    } finally {
-        closeDatabaseConnection();
-    }
-});
-
-
-// Add a new route to retrieve user details and bookings after login
-/*app.get('/user-details/:email', async (req, res) => {
-    try {
-        const { email } = req.params;
-
-        const db = await connectToDatabase();
-        const studentsCollection = db.collection('students');
-        const bookingsCollection = db.collection('bookings');
-
-        // Retrieve user details based on the provided email
-        const user = await studentsCollection.findOne({ email });
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found.' });
-        }
-
-        // Retrieve bookings based on the user's email
-        const userBookings = await bookingsCollection.find({ email }).toArray();
+        // Log the retrieved data
+        console.log('Retrieved User:', user);
+        console.log('Retrieved Bookings:', userBookings);
 
         // Return user details and bookings
         return res.status(200).json({ data: { user, bookings: userBookings } });
@@ -266,8 +234,6 @@ app.get('/user-details/:email', async (req, res) => {
         closeDatabaseConnection();
     }
 });
-*/
-
 
 // Delete account route
 app.delete('/delete-account', async (req, res) => {
@@ -305,7 +271,7 @@ app.delete('/delete-account', async (req, res) => {
         closeDatabaseConnection();
     }
 });
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-

@@ -1,3 +1,4 @@
+//---- By Owen Jones and Gavin Cunningham 
 
 // Login form event listener
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
@@ -51,10 +52,12 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 });
 
 
-// Function to show user details and bookings
 function showUserDetails(userData) {
+    console.log('User Data:', userData); // Log the user data
     // Hide the login form
-    document.getElementById('loginForm').style.display = 'none';
+    hideForms(); // Hide all forms
+    hideSuccessMessage(); // Hide success message
+    hideErrorMessage(); // Hide error message
 
     // Create an element to display user details
     const userDetailsElement = document.createElement('div');
@@ -62,27 +65,42 @@ function showUserDetails(userData) {
         <h2>User Details:</h2>
         <p><strong>Name:</strong> ${userData.firstName} ${userData.lastName}</p>
         <p><strong>Email:</strong> ${userData.email}</p>
-        <p><strong>Phone Number:</strong> ${userData.phoneNumber}</p>
+        <p><strong>Phone:</strong> ${userData.phoneNumber}</p>
     `;
 
-    // If there are bookings, display them
+    // Check if bookings are available
     if (userData.bookings && userData.bookings.length > 0) {
-        userDetailsElement.innerHTML += `
+        const bookingsElement = document.createElement('div');
+        bookingsElement.innerHTML = `
             <h2>Bookings:</h2>
-            <ul>
-                ${userData.bookings.map(booking => `
-                    <li>
-                        <p><strong>Lesson Type:</strong> ${booking.lessonType}</p>
-                        <p><strong>Preferred Time:</strong> ${booking.preferredTime}</p>
-                    </li>
-                `).join('')}
-            </ul>
         `;
+
+        // Display booking details
+        userData.bookings.forEach((booking, index) => {
+            bookingsElement.innerHTML += `
+                <p><strong>Booking ${index + 1}:</strong></p>
+                <p><strong>Instructor:</strong> ${booking.instructor}</p>
+                <p><strong>Course Type:</strong> ${booking.coursetype}</p>
+                <p><strong>Preferred Time:</strong> ${formatPreferredTime(booking.preferredTime)}</p>
+            `;
+        });
+
+        // Append booking details to the user details element
+        userDetailsElement.appendChild(bookingsElement);
     }
 
     // Append the user details element to the body
     document.body.appendChild(userDetailsElement);
 }
+
+
+// Function to format the preferred time
+function formatPreferredTime(preferredTime) {
+    const date = new Date(preferredTime);
+    const formattedDate = date.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
+    return formattedDate;
+}
+
 
 // Change password form event listener
 document.getElementById('changePasswordForm').addEventListener('submit', async function (event) {
@@ -107,6 +125,7 @@ document.getElementById('changePasswordForm').addEventListener('submit', async f
             const responseData = await response.json();
             console.log('Password change successful:', responseData.message);
             showSuccessMessage('Password change successful');
+			
 
         } else {
             const errorData = await response.json();
@@ -239,6 +258,13 @@ function hideForms() {
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('changePasswordForm').style.display = 'none';
     document.getElementById('deleteAccountForm').style.display = 'none';
+}
+
+function clearUserDetails() {
+    // Code to clear or hide user details
+    // For example, if user details are in a div with id 'userDetails'
+    document.getElementById('userDetails').innerHTML = '';
+    // Add any other necessary code to reset the state of the page
 }
 
 // Initially show the registration form

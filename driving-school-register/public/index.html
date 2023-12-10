@@ -1,130 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Metadata and Styles -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving School Registration and Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Add any additional custom styles for your driving school */
-        body {
-		margin : 0;
-           
-            background-color: #f8f9fa;
-        }
 
-        .container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #pageTitle {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 24px; /* Adjust the font size */
-        }
-
-        form {
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 2px;
-            font-size: 12px;
-        }
-
-        input {
-            width: calc(100% - 4px);
-            padding: 4px;
-            margin-bottom: 6px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #000;
-            color: #fff;
-            padding: 6px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #successMessage,
-        #errorMessage {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 6px;
-            margin-top: 6px;
-            border-radius: 4px;
-            display: none;
-        }
-
-        /* Navbar styles */
-        header {
-            background-color: #343a40;
-        }
-
-        .navbar-brand {
-            color: #fff;
-        }
-
-        .navbar-nav .nav-link {
-            color: #fff;
-        }
-
-        .navbar-toggler-icon {
-            background-color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <header data-bs-theme="dark">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">City Driving School</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="homepage.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Courses.html">Courses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Map.html">Instructor Locations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
-                    <div class="d-flex">
-                        <button class="btn btn-outline-light me-2" type="button">Login</button>
-                        <button class="btn btn-outline-light" type="button">Account</button>
+<!-- By Owen Jones and Gavin Cunningham  -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Metadata and Styles -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Driving School Registration and Login</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                background-color: #f8f9fa;
+            }
+    
+            .container {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            #pageTitle {
+                margin-top: 10px;
+                text-align: center;
+                font-size: 24px; /* Adjust the font size */
+            }
+    
+            form {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+    
+            label {
+                display: block;
+                margin-bottom: 2px;
+                font-size: 12px;
+            }
+    
+            input {
+                width: calc(100% - 4px);
+                padding: 4px;
+                margin-bottom: 6px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+    
+            button {
+                background-color: #000;
+                color: #fff;
+                padding: 6px 10px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+    
+            button:hover {
+                background-color: #0056b3;
+            }
+    
+        </style>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <header data-bs-theme="dark">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">City Driving School</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Courses.html">Courses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="bookings.html">Book Now</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Map.html">Instructor Locations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="AboutUs.html">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="ContactUs.html">Contact</a>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <a class="btn btn-outline-light me-2" href="index.html.html" role="button">Register</a>
+                            <a class="btn btn-outline-light" href="MyAccount.html" role="button">Account</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
     <div class="container">
         <h1 id="pageTitle">Driving School Registration</h1>
@@ -146,16 +123,12 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <!-- Error Message (Initially hidden) -->
-            <div id="errorMessage" style="display: none;"></div>
-
             <button type="submit" data-action="register">Register</button>
         </form>
-
-        <!-- Success Message (Initially hidden) -->
-        <div id="successMessage" style="display: none;"></div>
     </div>
 
+    <!-- Bootstrap JavaScript -->
+    <script src="bootstrap.bundle.min.js"></script>
     <script src="scripts/scripts.js"></script>
 </body>
 </html>

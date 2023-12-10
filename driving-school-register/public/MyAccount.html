@@ -1,3 +1,6 @@
+<!-- By Owen Jones and Gavin Cunningham  -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +11,6 @@
     <link rel="stylesheet" href="Style.css">
     <link href="bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Add any additional custom styles for your driving school */
         body {
             padding-top: 56px;
             background-color: #f8f9fa;
@@ -37,7 +39,7 @@
             margin-bottom: 8px;
         }
 
-        input {
+        input, select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -46,9 +48,8 @@
             border-radius: 4px;
         }
 
-        
         button {
-            background-color: #000; /* Black color */
+            background-color: #000; 
             color: #fff;
             padding: 10px 15px;
             border: none;
@@ -58,18 +59,6 @@
 
         button:hover {
             background-color: #0056b3;
-        }
-
-        #successMessage,
-        #errorMessage,
-        #changePasswordErrorMessage,
-        #deleteAccountErrorMessage {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 4px;
-            display: none;
         }
     </style>
 </head>
@@ -85,24 +74,27 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="homepage.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Courses.html">Courses</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="bookings.html">Book Now</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="Map.html">Instructor Locations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="AboutUs.html">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="ContactUs.html">Contact</a>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <button class="btn btn-outline-light me-2" type="button">Login</button>
-                        <button class="btn btn-outline-light" type="button">Account</button>
+                        <a class="btn btn-outline-light me-2" href="index.html" role="button">Register</a>
+                        <a class="btn btn-outline-light" href="MyAccount.html" role="button">Account</a>
                     </div>
                 </div>
             </div>
